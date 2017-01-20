@@ -1,0 +1,14 @@
+<ion-view view-title="Productos">
+  
+    <ion-content class="padding">
+      <input ng-model="textSearch" ng-change="search(textSearch)" placeholder="Buscar un producto" >
+      ({{ product_count }})
+        <ion-list>
+            <ion-item ng-repeat="item in productList" ui-sref="detail({id: item.id})">
+               ({{ item.default_code }})  {{ item.name }} [{{ item.qty_available }}]
+                
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
+
