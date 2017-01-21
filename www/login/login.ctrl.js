@@ -4,9 +4,9 @@
 angular.module('starter').controller('LoginCtrl', ['$scope', 'jsonRpc', '$state', function ($scope, jsonRpc, $state) {
 
 	$scope.login = {
-		'db': 'odoo',
+		'db': 'odooprod2',
 		'username':'admin',
-		'server': 'https://odoo.gestionblancoamor.com'
+		'server': 'http://localhost:9069'
 	};
 	$scope.submit = function () {
 		console.log('send', $scope.login);

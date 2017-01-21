@@ -1,24 +1,42 @@
 <ion-view view-title="Productos">
   
     <ion-content class="padding">
+<div class="list">
+ <label class="item item-input">
+      <input type="text" ng-model="$parent.textSearch" placeholder="Buscar un producto" >
+  </label>
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Lista
+    </div>
+        <select ng-options="item as item.label for item in $parent.priceLists " ng-model="$parent.selectedList"></select>
+  </label>
 
-      <input ng-model="$parent.textSearch" placeholder="Buscar un producto" >
-      ({{ product_count }})
-      <label for="hasStock" >Con stock</label>
-      <input ng-model="$parent.hasStock"   ng-true-value="1" ng-false-value="0" type="checkbox" >
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Deposito
+    </div>
+        <select ng-options="item as item.label for item in $parent.warehouses " ng-model="$parent.selectedWarehouse"></select>
+  </label>
 
-        <select ng-options="item as item.label for item in $parent.priceLists track by item" ng-model="$parent.selectedList"></select>
+  <ion-checkbox ng-model="$parent.hasStock">con Stock</ion-checkbox>
+
+</div>
+        <button ng-click="search()" class="button button-positive button-block  ion-search">Buscar ({{ product_count }})
+</button>
+  
 
 
-        <button ng-click="search()">Buscar</button>
+
 
         <div ng-show="$parent.loading">Buscando </div>
 
         <div class="row"  ng-show="!$parent.loading" ng-repeat="item in productList" ui-sref="detail({id: item.id})">
            
-          <div class="col">({{ item.default_code }})</div>
-          <div class="col col-50">{{ item.name }}</div>
-          <div class="col">{{ item.qty_available }}</div>
+          <div class="col col-60">({{ item.default_code }}) <strong>{{ item.name }}</strong><br/>
+            stock: {{ item.qty_available }}</div>
+          <div class="col">{{ item.price_with_tax | currency }}</div>
+
         </div>
 
 
