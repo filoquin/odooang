@@ -1,14 +1,28 @@
 <ion-view view-title="Productos">
   
     <ion-content class="padding">
-      <input ng-model="textSearch" ng-change="search(textSearch)" placeholder="Buscar un producto" >
+
+      <input ng-model="$parent.textSearch" placeholder="Buscar un producto" >
       ({{ product_count }})
-        <ion-list>
-            <ion-item ng-repeat="item in productList" ui-sref="detail({id: item.id})">
-               ({{ item.default_code }})  {{ item.name }} [{{ item.qty_available }}]
-                
-            </ion-item>
-        </ion-list>
+      <label for="hasStock" >Con stock</label>
+      <input ng-model="$parent.hasStock"   ng-true-value="1" ng-false-value="0" type="checkbox" >
+
+        <select ng-options="item as item.label for item in $parent.priceLists track by item" ng-model="$parent.selectedList"></select>
+
+
+        <button ng-click="search()">Buscar</button>
+
+        <div ng-show="$parent.loading">Buscando </div>
+
+        <div class="row"  ng-show="!$parent.loading" ng-repeat="item in productList" ui-sref="detail({id: item.id})">
+           
+          <div class="col">({{ item.default_code }})</div>
+          <div class="col col-50">{{ item.name }}</div>
+          <div class="col">{{ item.qty_available }}</div>
+        </div>
+
+
     </ion-content>
 </ion-view>
+
 

@@ -34,13 +34,12 @@ angular.module('starter', ['ionic', 'ui.router', 'odoo'])
   $stateProvider.state('productSearch', {
     url: '/',
     templateUrl: 'productSearch/productSearch.html',
-    controller: 'productSearch',
-    resolve: {
-    }
+    controller: 'productSearch'
+
   }).state('login', {
     url: '/login',
     templateUrl: 'login/login.html',
     controller: 'LoginCtrl'
   });
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/login');
 }]);
