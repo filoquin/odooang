@@ -7,8 +7,8 @@ angular.module('odoo').provider('jsonRpc', function jsonRpcProvider() {
 	this.odooRpc = {
 		odoo_server: "",
 		uniq_id_counter: 0,
-		context: {'lang': 'fr_FR'},
-		shouldManageSessionId: false, //try without first
+		context: {'lang': 'es_AR'},
+		shouldManageSessionId: true, //try without first
 		errorInterceptors: []
 	};
 
@@ -80,7 +80,7 @@ angular.module('odoo').provider('jsonRpc', function jsonRpcProvider() {
 				});
 		};
 
-		odooRpc.searchRead = function(model, domain, fields , offset=0,limit=80,context={}) {
+		odooRpc.searchRead = function(model, domain, fields , offset,limit,context) {
 			var params = {
 				model: model,
 				domain: domain,

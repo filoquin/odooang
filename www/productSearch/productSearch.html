@@ -22,20 +22,20 @@
   <ion-checkbox ng-model="$parent.hasStock">con Stock</ion-checkbox>
 
 </div>
-        <button ng-click="search()" class="button button-positive button-block  ion-search">Buscar ({{ product_count }})
+        <button ng-click="search()" class="button button-assertive button-block  ion-search">Buscar ({{ product_count }})
 </button>
   
 
 
 
 
-        <div ng-show="$parent.loading">Buscando </div>
+        <div ng-show="$parent.loading">Buscando  {{ textSearch }} </div>
 
         <div class="row"  ng-show="!$parent.loading" ng-repeat="item in productList" ui-sref="detail({id: item.id})">
            
-          <div class="col col-60">({{ item.default_code }}) <strong>{{ item.name }}</strong><br/>
+          <div class="col col-70">({{ item.default_code }}) <strong>{{ item.name }}</strong><br/>
             stock: {{ item.qty_available }}</div>
-          <div class="col">{{ item.price_with_tax | currency }}</div>
+          <div align="right"  class="col col-30">{{ item.price_with_tax | currency }}</div>
 
         </div>
 

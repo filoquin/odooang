@@ -28,7 +28,7 @@ gulp.task('build-lib-min', [], function () {
      .pipe($.ignore.exclude('*.spec.js'))
      .pipe($.ngAnnotate())
      .pipe($.uglify({preserveComments:$.uglifySaveLicense}))
-     .pipe($.concat('odoo.min.js'))
+     .pipe($.concat('odoo.js'))
      .pipe(gulp.dest(paths.dist + '/'))
      .pipe($.size({ title: paths.dist + '/', showFiles: true }));
 });

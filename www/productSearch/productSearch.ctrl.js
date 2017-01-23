@@ -16,7 +16,7 @@ angular.module('starter').controller('productSearch', ['$scope','jsonRpc', funct
     //
         if ($scope.textSearch.length > 0 ) {
             var words = $scope.textSearch.split(" ");
-            var leafs = [];
+            var leafs = [['active','=',true]];
             var context ={};
             for (var i = 0; i < words.length; i++) {
                 leafs.push(['name','ilike',"%"+ words[i] +"%"]);
@@ -27,7 +27,7 @@ angular.module('starter').controller('productSearch', ['$scope','jsonRpc', funct
             if ($scope.selectedList){
                   context.pricelist = $scope.selectedList.id;
             }
-            if ($scope.selectedWarehouse){
+            if ($scope.selectedWarehouse && $scope.selectedWarehouse != 1){
                   context.warehouse = $scope.selectedWarehouse.id;
             }
             var result=jsonRpc.searchRead('product.product', leafs, ['default_code','name','qty_available','price_with_tax'],0,40,context ).then(function(result) {
