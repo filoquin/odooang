@@ -44,6 +44,7 @@ angular.module('odoo').provider('jsonRpc', function jsonRpcProvider() {
 				}
 				odooRpc.context = result.user_context;
 				$cookies.session_id = result.session_id;
+				$cookies.last_username = login;
 				return result;
 			});
 		};
@@ -91,6 +92,24 @@ angular.module('odoo').provider('jsonRpc', function jsonRpcProvider() {
 			}
 			return odooRpc.sendRequest('/web/dataset/search_read', params);
 		};
+
+		odooRpc.read = function(model, domain, fields , offset,limit,context) {
+			var params = {
+				model: model,
+				domain: domain,
+				fields: fields,
+				offset: offset,
+	            context: context,
+				limit: limit
+			}
+			return odooRpc.sendRequest('/web/dataset/read', params);
+		};
+
+		odooRpc.execute = function(model, func, params) {
+			return odooRpc.call(model, func, params , {});
+
+		}
+
 
 		odooRpc.getSessionInfo = function(model, method, args, kwargs) {
 			return odooRpc.sendRequest('/web/session/get_session_info', {});

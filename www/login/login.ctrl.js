@@ -1,11 +1,13 @@
 'use strict';
 
 
-angular.module('starter').controller('LoginCtrl', ['$scope', 'jsonRpc', '$state', function ($scope, jsonRpc, $state) {
+angular.module('starter').controller('LoginCtrl', ['$scope', 'jsonRpc','$cookies','$state', function ($scope, jsonRpc,$cookies,$state) {
 
+	console.log($cookies.last_username);
+	
 	$scope.login = {
 		'db': 'odoo',
-		'username':'admin',
+		'username':$cookies.last_username,
 		'server': 'https://odoo.gestionblancoamor.com'
 	};
 	$scope.submit = function () {

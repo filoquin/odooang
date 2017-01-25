@@ -1,37 +1,41 @@
 <ion-view view-title="Productos">
   
     <ion-content class="padding">
+<form (ngSubmit)="search()">
+
 <div class="list">
  <label class="item item-input">
-      <input type="text" ng-model="$parent.textSearch" placeholder="Buscar un producto" >
+      <input type="text" ng-model="$parent.textSearch" placeholder="Nombre o codigo producto" >
+
   </label>
   <label class="item item-input item-select">
     <div class="input-label">
       Lista
     </div>
-        <select ng-options="item as item.label for item in $parent.priceLists " ng-model="$parent.selectedList"></select>
+        <select ng-options="item as item.label for item in $parent.priceLists " ng-model="$parent.selectedList" ng-change="search()"></select>
   </label>
 
-  <label class="item item-input item-select">
+  <label class="item item-input item-select" >
     <div class="input-label">
       Deposito
     </div>
-        <select ng-options="item as item.label for item in $parent.warehouses " ng-model="$parent.selectedWarehouse"></select>
+        <select ng-options="item as item.label for item in $parent.warehouses " ng-model="$parent.selectedWarehouse" ng-change="search()"></select>
   </label>
 
-  <ion-checkbox ng-model="$parent.hasStock">con Stock</ion-checkbox>
+  <ion-checkbox ng-model="$parent.hasStock" class="checkbox-assertive">con Stock</ion-checkbox>
 
 </div>
-        <button ng-click="search()" class="button button-assertive button-block  ion-search">Buscar ({{ product_count }})
-</button>
+        <button ng-click="search()" class="button button-assertive  ion-search">::: {{ product_count }} :::</button>
+         <button ng-click="scanBarcode()" class="button button-assertive ion-pinpoint"></button>
+
   
 
-
+</form>
 
 
         <div ng-show="$parent.loading">Buscando  {{ textSearch }} </div>
 
-        <div class="row"  ng-show="!$parent.loading" ng-repeat="item in productList" ui-sref="detail({id: item.id})">
+        <div class="row"  ng-show="!$parent.loading" ng-repeat="item in productList" ui-sref="productDetail({id: item.id})">
            
           <div class="col col-70">({{ item.default_code }}) <strong>{{ item.name }}</strong><br/>
             stock: {{ item.qty_available }}</div>
