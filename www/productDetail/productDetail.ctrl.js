@@ -1,7 +1,22 @@
 'use strict';
-angular.module('starter').controller('productDetail', ['$scope','$stateParams','jsonRpc', function ($scope, $stateParams,jsonRpc) {
+angular.module('starter').controller('productDetail', ['$scope','$stateParams','jsonRpc','cartService','$state', function ($scope, $stateParams,jsonRpc,cartService,$state) {
  
     var leafs = [['active','=',true],['id','=',$stateParams.id]];
+    $scope.qty = 1 ; 
+
+    $scope.add = function (product_id,description,quantity,price) {
+      cartService.add(product_id,description,quantity,price);
+      $state.go('cart');
+    };
+
+    $scope.minus=function(){
+      $scope.qty = $scope.qty - 1;      
+    }     
+     
+    $scope.plus=function(){
+      $scope.qty = $scope.qty + 1;      
+    }     
+
 
     var result=jsonRpc.searchRead('product.product', leafs, 
         ['default_code','name','qty_available','price_with_tax','description','image_small'],0,1,{} ).then(

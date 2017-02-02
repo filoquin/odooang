@@ -9,10 +9,14 @@
     <p>({{ item.default_code }}) </p>
   </div>
 
+
   <div ng-show="item.description" class="item item-body">
     <p >
       {{ item.description }}
     </p>
+  </div>
+  <div class="item ">
+  <button ng-click="add(item.id,item.name,qty,item.price_with_tax)" class="button button-assertive ion-android-cart">Agregar {{ qty }} </button> <button ng-click="plus()" class="button ion-plus-circled"></button> <button ng-click="minus()" class="button ion-minus-circled" ng-show="qty > 1"></button> 
   </div>
   <div class="item ">
       Principal: {{ item.prices['2'] * 1.21  | currency  }}  </div>
@@ -41,5 +45,6 @@
     </ion-content>
 </ion-view>
   <div class="bar bar-footer">
-    <a href="#/" class="button button-assertive button-block">::: Volver al buscador :::</a>
+    <a href="#/" class="button button-assertive button-block ion-ios-arrow-back"> Volver al buscador </a>
+
   </div>

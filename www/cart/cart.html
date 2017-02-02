@@ -1,0 +1,50 @@
+<ion-view view-title="Carro">
+  
+    <ion-content class="padding">
+
+        <div class="row"   ng-repeat="item in productList">
+           
+          <div class="col col-20  " ><button ng-click="dropItem($index)" class="button ion-trash-b"> </button> <input ng-model=" item.quantity" type="text"></div>
+          <div class="col col-50" >{{ item.description }}</div>
+          <div align="right col-30"  class="col ">{{ item.price *  item.quantity | currency }}</div>
+        </div>
+
+
+
+<div class="list">
+   <div class="item item-divider">
+    
+    <ion-search placeholder="Cliente" filter="" class="" min-length="4" model="" source=""></ion-search>
+
+  </div>
+
+  <label class="item item-input">
+    <input type="text" placeholder="Nombre">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="Apellido">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="DNU">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="email">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="Telefono">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="celular">
+  </label>
+
+</div>
+
+
+    </ion-content>
+</ion-view>
+
+<div class="bar bar-footer">
+      <button ng-click="clear()" class="button button-assertive ion-nuclear">Vaciar </button>
+    <a href="#/" class="button button-assertive button-block ion-ios-arrow-back"> Volver al buscador </a>
+
+</div>
